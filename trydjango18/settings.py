@@ -27,16 +27,31 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'yourgmail.gmail.com'
+EMAIL_HOST_PASSWORD = 'yourpassword'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
+"""
+If using gmail, you will need to 
+unlock CAptcha to enable Djangoto 
+to send for you:
+https://accounts.google.com/displayunlockcaptcha
+"""
 # Application definition
 
 INSTALLED_APPS = (
+    #django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #third party apps
+    'crispy_forms',
+    #my apps
     'newsletter',
 )
 
@@ -101,3 +116,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env","static_root")
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static_in_pro","our_static"),
+    # os.path.join(BASE_DIR, "static_in_env"),
+    # '/var/www/static/',
+)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env","media_root")
+
+
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
